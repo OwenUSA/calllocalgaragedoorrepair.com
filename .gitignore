@@ -1,7 +1,16 @@
-# originales de Gemini (.jfif de 2-4 MB): copia local, no hace falta publicarlos
-img/_originales/
+# dependencias
+/node_modules
 
-# basura del sistema
-Thumbs.db
-desktop.ini
+# build de Next
+/.next
+/out
+next-env.d.ts
+
+# entorno y logs
+.env*.local
+npm-debug.log*
+*.tsbuildinfo
+
+# sistema
 .DS_Store
+Thumbs.db

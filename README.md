@@ -1,30 +1,61 @@
 # Call Local Garage Door Repair
 
 Landing de garage door repair para el dominio **calllocalgaragedoorrepair.com**.
-Séptima página de YELP PAGES. Formato **Trevino** (el mismo de
-FlowerGarageDoorRepair: home + páginas de ciudad con URL limpia), con paleta
-propia: **espresso + cobre + bronce sobre crema**.
+Séptima página de YELP PAGES, con paleta propia: **espresso + cobre + bronce
+sobre crema**.
+
+Desde el 28 de agosto de 2026 es una aplicación **Next.js** (App Router) que se
+compila a sitio estático: el HTML y el CSS que salen del build no necesitan
+servidor. Misma arquitectura que FlowerGarageDoorRepair.
+
+## Cómo se trabaja
+
+```bash
+npm install       # una vez
+npm run dev       # http://localhost:3000
+npm run build     # genera out/ con el sitio estatico completo
+```
+
+`out/` es lo que se sube al hosting, o lo que compilan Vercel / Netlify /
+GitHub Actions. No se commitea: está en `.gitignore`, igual que `node_modules`.
 
 ## Estructura
 
 ```
-index.html              home (Miami)
-privacy-policy.html     política de privacidad (con cláusula A2P 10DLC)
-css/styles.css          hoja global (paleta en :root)
-css/location.css        componentes de las páginas de ciudad
-Miami/index.html        despacho principal
-MiamiGardens/index.html
-Weston/index.html
-BocaRaton/index.html
-WestPalmBeach/index.html
-img/                    fotos opcionales (ver img/LEEME.txt)
-robots.txt  sitemap.xml
+app/layout.jsx              <html>, CSS global y metadata compartida
+app/page.jsx                /                 home (Miami)
+app/[city]/page.jsx         /Miami /MiamiGardens /Weston /BocaRaton /WestPalmBeach
+app/privacy-policy/page.jsx /privacy-policy   (con la clausula A2P 10DLC)
+components/                 Header, Footer, TopBar, Icons
+data/site.js                TODO el contenido: marca, telefono, ciudades, servicios, FAQ
+css/styles.css              hoja global (paleta en :root)
+css/location.css            componentes de las paginas de ciudad
+public/img/                 logo y fotos, servidas en /img/...
+public/robots.txt · public/sitemap.xml · public/favicon.svg
+assets/originales/          los .jfif de Gemini sin tocar (NO se publican)
+docs/                       notas de imagenes y prompts
 ```
 
-Las cinco páginas de ciudad son idénticas en estructura: sólo cambian ciudad,
-dirección, ZIP, mapa, barrios y el párrafo de "Local Knowledge". Se generaron
-con `loc.tpl` + `gen.sh` (scratchpad de la sesión del 28 ago 2026); si hay que
-tocar las cinco, se edita la plantilla y se regenera.
+Las cinco páginas de ciudad son **una sola ruta**: `app/[city]/page.jsx` con
+`generateStaticParams()`. Lo que cambia entre ellas —dirección, ZIP, barrios,
+párrafo de "Local Knowledge", coordenadas— vive en el array `cities` de
+`data/site.js`. Añadir una ciudad es añadir un objeto a ese array; ya no hacen
+falta `loc.tpl` ni `gen.sh`.
+
+Las URLs limpias se conservan (`/Weston`) por `trailingSlash: true` en
+`next.config.mjs`. La única que cambió es la legal: de `/privacy-policy.html` a
+**`/privacy-policy`**.
+
+### Dónde tocar cada cosa
+
+| Quieres cambiar… | Archivo |
+|---|---|
+| Teléfono, correo, horario, marca | `data/site.js`, objeto `site` |
+| Una dirección, un barrio, el texto local de una ciudad | `data/site.js`, array `cities` |
+| Las tarjetas de servicio | `data/site.js`, `homeServices` / `cityServices` |
+| Las preguntas frecuentes (y su JSON-LD, que sale de ahí) | `data/site.js`, `faq` |
+| Colores y tipografía | `css/styles.css`, bloque `:root` |
+| Cabecera, pie, menú | `components/` |
 
 ## Datos del negocio
 

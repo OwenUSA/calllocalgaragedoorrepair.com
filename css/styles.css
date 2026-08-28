@@ -242,7 +242,7 @@ li { margin-bottom: .45em; }
   background:
     linear-gradient(115deg, rgba(31, 26, 21, .96) 0%, rgba(51, 41, 31, .9) 46%, rgba(76, 59, 43, .82) 100%),
     radial-gradient(1100px 520px at 80% 10%, rgba(194, 84, 11, .38), transparent 62%),
-    url("../img/hero-garage.jpg") center / cover no-repeat,
+    url("/img/hero-garage.jpg") center / cover no-repeat,
     linear-gradient(180deg, #4c3b2b, #1f1a15);
   color: #fff;
   padding: 92px 0 84px;
@@ -355,7 +355,7 @@ li { margin-bottom: .45em; }
   min-height: 420px;
   background:
     linear-gradient(160deg, rgba(31, 26, 21, .68), rgba(111, 85, 57, .52)),
-    url("../img/about-garage.jpg") center / cover no-repeat,
+    url("/img/about-garage.jpg") center / cover no-repeat,
     repeating-linear-gradient(180deg, #e6dbc9 0 42px, #d6c6ae 42px 46px);
   box-shadow: var(--shadow);
   position: relative;
