@@ -1,0 +1,42 @@
+IMAGENES DEL SITIO
+==================
+
+Todas las imagenes de Gemini (28 ago 2026) ya estan procesadas y en uso.
+Los originales sin tocar estan en _originales/ (.jfif de 2-4 MB cada uno).
+
+FOTOS
+-----
+  hero-garage.jpg      1920x1072  267 KB  hero de la home Y de las 5 paginas
+                                          de ubicacion
+  about-garage.jpg     1280x956   195 KB  bloque "The Crew That Picks Up the
+                                          Phone" de la home
+  why-garage.jpg       1280x956   163 KB  "Why {ciudad} calls us first"
+  process-garage.jpg   1280x956   143 KB  "How a {ciudad} visit works"
+
+Se referencian desde el CSS, no desde el HTML: .hero y .split__media en
+css/styles.css, y .hero--loc, .photo--why y .photo--process en
+css/location.css. Si se sustituye alguna, basta con respetar el nombre.
+
+Recomprimidas a JPEG (hero calidad 70, el resto 82) para que ninguna pase de
+300 KB.
+
+LOGO
+----
+  logo-icon.png        160x150     23 KB  SOLO el icono, con transparencia real.
+                                          Es el que va en la cabecera y el pie
+                                          de las 7 paginas (.logo__mark).
+  logo-full.png        900x288    159 KB  Lockup completo (icono + logotipo),
+                                          transparente, para fondo claro.
+  logo-full-light.png  900x288    116 KB  Lockup con "CALL LOCAL" en crema,
+                                          para fondo oscuro.
+
+En la web se usa solo el icono porque el logotipo va en texto HTML: a 46 px de
+alto la linea "GARAGE DOOR REPAIR" del lockup se convertiria en una mancha de
+3 px. Los dos logo-full son para Google Business Profile, redes, facturas y
+demas.
+
+El fondo blanco del JPEG de Gemini se quito por
+alpha = max(rampa de croma 40-130, rampa de luminancia 235-60), guardando el
+color ya premultiplicado (P = c - (255 - alpha)) para que no quede halo claro
+en los bordes al escalarlo. Comprobado sobre blanco, sobre crema y sobre el
+espresso del pie.

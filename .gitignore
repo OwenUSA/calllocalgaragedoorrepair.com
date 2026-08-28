@@ -1,0 +1,7 @@
+# originales de Gemini (.jfif de 2-4 MB): copia local, no hace falta publicarlos
+img/_originales/
+
+# basura del sistema
+Thumbs.db
+desktop.ini
+.DS_Store
